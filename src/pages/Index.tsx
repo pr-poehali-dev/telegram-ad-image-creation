@@ -51,7 +51,6 @@ const Index = () => {
         <Button onClick={() => {
           const banner = document.getElementById('telegram-banner');
           if (banner) {
-            const rect = banner.getBoundingClientRect();
             const canvas = document.createElement('canvas');
             canvas.width = 1080;
             canvas.height = 1080;
@@ -59,15 +58,27 @@ const Index = () => {
             if (ctx) {
               ctx.fillStyle = 'rgb(26, 31, 44)';
               ctx.fillRect(0, 0, 1080, 1080);
+              
               ctx.fillStyle = 'white';
-              ctx.font = 'bold 64px Montserrat, sans-serif';
+              ctx.font = 'bold 72px Montserrat, sans-serif';
               ctx.textAlign = 'center';
-              const text = 'Станьте успешным';
-              const text2 = 'психотерапевтом';
-              const text3 = 'всего за 3 месяца';
-              ctx.fillText(text, 540, 400);
-              ctx.fillText(text2, 540, 500);
-              ctx.fillText(text3, 540, 600);
+              ctx.fillText('Станьте успешным', 540, 280);
+              ctx.fillText('психотерапевтом', 540, 380);
+              ctx.fillText('всего за 3 месяца', 540, 480);
+              
+              ctx.fillStyle = 'rgb(14, 165, 233)';
+              ctx.fillRect(460, 520, 160, 6);
+              
+              ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+              ctx.font = '36px Open Sans, sans-serif';
+              ctx.fillText('Практический курс, признанный', 540, 620);
+              ctx.fillText('профессионалами отрасли', 540, 670);
+              
+              ctx.fillStyle = 'rgb(14, 165, 233)';
+              ctx.font = 'bold 32px Open Sans, sans-serif';
+              ctx.fillText('Обучайтесь дистанционно', 540, 770);
+              ctx.fillText('и работайте удаленно', 540, 820);
+              
               const link = document.createElement('a');
               link.download = 'telegram-banner.png';
               link.href = canvas.toDataURL('image/png');
@@ -80,11 +91,17 @@ const Index = () => {
       </div>
 
       <div id="telegram-banner" className="w-[1080px] h-[1080px] bg-primary flex items-center justify-center mx-auto my-8">
-        <div className="text-center px-16">
-          <h1 className="text-7xl font-bold text-white leading-tight mb-8">
+        <div className="text-center px-20">
+          <h1 className="text-7xl font-bold text-white leading-tight mb-12">
             Станьте успешным<br/>психотерапевтом<br/>всего за 3 месяца
           </h1>
-          <div className="w-32 h-1 bg-accent mx-auto"></div>
+          <div className="w-24 h-1 bg-accent mx-auto mb-12"></div>
+          <p className="text-3xl text-white/90 mb-6 leading-relaxed">
+            Практический курс, признанный<br/>профессионалами отрасли
+          </p>
+          <p className="text-2xl text-accent font-semibold">
+            Обучайтесь дистанционно<br/>и работайте удаленно
+          </p>
         </div>
       </div>
 
