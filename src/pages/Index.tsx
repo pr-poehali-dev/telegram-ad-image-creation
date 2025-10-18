@@ -1,12 +1,202 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Icon from "@/components/ui/icon";
 
 const Index = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Регистрация:", formData);
+  };
+
+  const programItems = [
+    {
+      time: "09:00 - 10:30",
+      title: "Введение в нейропсихологию",
+      description: "Основные принципы и методы практической нейропсихологии. Актуальность применения в современных условиях.",
+    },
+    {
+      time: "10:45 - 12:15",
+      title: "Диагностика нейропсихологических функций",
+      description: "Методики оценки когнитивных процессов. Интерпретация результатов и построение программы коррекции.",
+    },
+    {
+      time: "13:00 - 14:30",
+      title: "Практические методы коррекции",
+      description: "Телесно-ориентированные техники. Сенсомоторная коррекция. Упражнения для развития межполушарного взаимодействия.",
+    },
+    {
+      time: "14:45 - 16:15",
+      title: "Работа с детьми и взрослыми",
+      description: "Особенности коррекционной работы с разными возрастными группами. Адаптация методик под индивидуальные потребности.",
+    },
+    {
+      time: "16:30 - 18:00",
+      title: "Практикум и разбор кейсов",
+      description: "Отработка практических навыков. Разбор реальных случаев из практики. Ответы на вопросы участников.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <section className="relative bg-primary text-primary-foreground py-24 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="flex flex-col items-center text-center space-y-6">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+              Практическая нейропсихология
+            </h1>
+            <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-3xl">
+              Профессиональный семинар от сертифицированного тренера Международного института практической нейропсихологии
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 items-center mt-8">
+              <div className="flex items-center gap-2">
+                <Icon name="Calendar" size={20} />
+                <span className="text-lg">Дата проведения уточняется</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Icon name="Clock" size={20} />
+                <span className="text-lg">Полный день, 9:00 - 18:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-6 bg-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Программа семинара</h2>
+            <p className="text-lg text-muted-foreground">
+              Структурированная программа для глубокого погружения в методы практической нейропсихологии
+            </p>
+          </div>
+
+          <div className="grid gap-6">
+            {programItems.map((item, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <div className="flex items-center gap-2 text-accent">
+                      <Icon name="Clock" size={18} />
+                      <span className="font-semibold">{item.time}</span>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Спикер семинара</h2>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-semibold">Александр Толстых</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Сертифицированный тренер Международного института практической нейропсихологии
+                </p>
+                <div className="space-y-3 mt-6">
+                  <div className="flex items-start gap-3">
+                    <Icon name="GraduationCap" size={24} className="text-accent mt-1" />
+                    <p className="text-muted-foreground">
+                      Многолетний опыт практической работы с детьми и взрослыми
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Icon name="Award" size={24} className="text-accent mt-1" />
+                    <p className="text-muted-foreground">
+                      Международная сертификация по методам нейропсихологической коррекции
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Icon name="Users" size={24} className="text-accent mt-1" />
+                    <p className="text-muted-foreground">
+                      Проведено более 100 обучающих семинаров для специалистов
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <Card className="shadow-xl">
+              <CardHeader>
+                <CardTitle className="text-2xl">Регистрация на семинар</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Имя и фамилия</Label>
+                    <Input
+                      id="name"
+                      placeholder="Введите ваше имя"
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="example@mail.ru"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Телефон</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="+7 (___) ___-__-__"
+                      value={formData.phone}
+                      onChange={(e) =>
+                        setFormData({ ...formData, phone: e.target.value })
+                      }
+                      required
+                    />
+                  </div>
+                  <Button type="submit" className="w-full" size="lg">
+                    Зарегистрироваться
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-primary text-primary-foreground py-12 px-6">
+        <div className="container mx-auto max-w-6xl text-center">
+          <p className="text-lg">
+            По вопросам участия обращайтесь:{" "}
+            <a href="mailto:info@tolstykh.su" className="underline font-semibold">
+              info@tolstykh.su
+            </a>
+          </p>
+        </div>
+      </section>
     </div>
   );
 };
