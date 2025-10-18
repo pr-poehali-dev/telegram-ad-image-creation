@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Icon from "@/components/ui/icon";
+import html2canvas from "html2canvas";
 
 const Index = () => {
   const [formData, setFormData] = useState({
@@ -48,48 +49,25 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="fixed top-4 right-4 z-50 flex gap-3">
-        <Button onClick={() => {
+        <Button onClick={async () => {
           const banner = document.getElementById('telegram-banner-2');
           if (banner) {
-            const canvas = document.createElement('canvas');
-            canvas.width = 1080;
-            canvas.height = 1080;
-            const ctx = canvas.getContext('2d');
-            if (ctx) {
-              const img = new Image();
-              img.crossOrigin = 'anonymous';
-              img.onload = () => {
-                ctx.drawImage(img, 0, 0, 1080, 1080);
-                
-                ctx.fillStyle = 'rgba(26, 31, 44, 0.85)';
-                ctx.fillRect(0, 0, 1080, 1080);
-                
-                ctx.fillStyle = 'white';
-                ctx.font = 'bold 72px Montserrat, sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText('Станьте успешным', 540, 280);
-                ctx.fillText('психотерапевтом', 540, 380);
-                ctx.fillText('всего за 3 месяца', 540, 480);
-                
-                ctx.fillStyle = 'rgb(14, 165, 233)';
-                ctx.fillRect(460, 520, 160, 6);
-                
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-                ctx.font = '36px Open Sans, sans-serif';
-                ctx.fillText('Практический курс, признанный', 540, 620);
-                ctx.fillText('профессионалами отрасли', 540, 670);
-                
-                ctx.fillStyle = 'rgb(14, 165, 233)';
-                ctx.font = 'bold 32px Open Sans, sans-serif';
-                ctx.fillText('Обучайтесь дистанционно', 540, 770);
-                ctx.fillText('и работайте удаленно', 540, 820);
-                
-                const link = document.createElement('a');
-                link.download = 'telegram-banner-with-image.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-              };
-              img.src = 'https://cdn.poehali.dev/projects/af4a95b0-dc42-4a22-b1e8-01ee2dab9544/files/9c91f62d-f07e-4d59-8860-ff2101aff2e8.jpg';
+            try {
+              const canvas = await html2canvas(banner, {
+                width: 1080,
+                height: 1080,
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: null
+              });
+              
+              const link = document.createElement('a');
+              link.download = 'telegram-banner-with-image.png';
+              link.href = canvas.toDataURL('image/png');
+              link.click();
+            } catch (error) {
+              console.error('Ошибка при создании баннера:', error);
             }
           }
         }} size="lg" className="shadow-lg">
