@@ -47,6 +47,47 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <div className="fixed top-4 right-4 z-50">
+        <Button onClick={() => {
+          const banner = document.getElementById('telegram-banner');
+          if (banner) {
+            const rect = banner.getBoundingClientRect();
+            const canvas = document.createElement('canvas');
+            canvas.width = 1080;
+            canvas.height = 1080;
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+              ctx.fillStyle = 'rgb(26, 31, 44)';
+              ctx.fillRect(0, 0, 1080, 1080);
+              ctx.fillStyle = 'white';
+              ctx.font = 'bold 64px Montserrat, sans-serif';
+              ctx.textAlign = 'center';
+              const text = 'Станьте успешным';
+              const text2 = 'психотерапевтом';
+              const text3 = 'всего за 3 месяца';
+              ctx.fillText(text, 540, 400);
+              ctx.fillText(text2, 540, 500);
+              ctx.fillText(text3, 540, 600);
+              const link = document.createElement('a');
+              link.download = 'telegram-banner.png';
+              link.href = canvas.toDataURL('image/png');
+              link.click();
+            }
+          }
+        }} size="lg" className="shadow-lg">
+          Скачать баннер
+        </Button>
+      </div>
+
+      <div id="telegram-banner" className="w-[1080px] h-[1080px] bg-primary flex items-center justify-center mx-auto my-8">
+        <div className="text-center px-16">
+          <h1 className="text-7xl font-bold text-white leading-tight mb-8">
+            Станьте успешным<br/>психотерапевтом<br/>всего за 3 месяца
+          </h1>
+          <div className="w-32 h-1 bg-accent mx-auto"></div>
+        </div>
+      </div>
+
       <section className="relative bg-primary text-primary-foreground py-24 px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col items-center text-center space-y-6">
