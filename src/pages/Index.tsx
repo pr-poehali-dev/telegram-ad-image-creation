@@ -47,7 +47,54 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="fixed top-4 right-4 z-50">
+      <div className="fixed top-4 right-4 z-50 flex gap-3">
+        <Button onClick={() => {
+          const banner = document.getElementById('telegram-banner-2');
+          if (banner) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1080;
+            canvas.height = 1080;
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+              const img = new Image();
+              img.crossOrigin = 'anonymous';
+              img.onload = () => {
+                ctx.drawImage(img, 0, 0, 1080, 1080);
+                
+                ctx.fillStyle = 'rgba(26, 31, 44, 0.85)';
+                ctx.fillRect(0, 0, 1080, 1080);
+                
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 72px Montserrat, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Станьте успешным', 540, 280);
+                ctx.fillText('психотерапевтом', 540, 380);
+                ctx.fillText('всего за 3 месяца', 540, 480);
+                
+                ctx.fillStyle = 'rgb(14, 165, 233)';
+                ctx.fillRect(460, 520, 160, 6);
+                
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.font = '36px Open Sans, sans-serif';
+                ctx.fillText('Практический курс, признанный', 540, 620);
+                ctx.fillText('профессионалами отрасли', 540, 670);
+                
+                ctx.fillStyle = 'rgb(14, 165, 233)';
+                ctx.font = 'bold 32px Open Sans, sans-serif';
+                ctx.fillText('Обучайтесь дистанционно', 540, 770);
+                ctx.fillText('и работайте удаленно', 540, 820);
+                
+                const link = document.createElement('a');
+                link.download = 'telegram-banner-with-image.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+              };
+              img.src = 'https://cdn.poehali.dev/projects/af4a95b0-dc42-4a22-b1e8-01ee2dab9544/files/9c91f62d-f07e-4d59-8860-ff2101aff2e8.jpg';
+            }
+          }
+        }} size="lg" className="shadow-lg">
+          Скачать с фоном
+        </Button>
         <Button onClick={() => {
           const banner = document.getElementById('telegram-banner');
           if (banner) {
@@ -92,6 +139,27 @@ const Index = () => {
 
       <div id="telegram-banner" className="w-[1080px] h-[1080px] bg-primary flex items-center justify-center mx-auto my-8">
         <div className="text-center px-20">
+          <h1 className="text-7xl font-bold text-white leading-tight mb-12">
+            Станьте успешным<br/>психотерапевтом<br/>всего за 3 месяца
+          </h1>
+          <div className="w-24 h-1 bg-accent mx-auto mb-12"></div>
+          <p className="text-3xl text-white/90 mb-6 leading-relaxed">
+            Практический курс, признанный<br/>профессионалами отрасли
+          </p>
+          <p className="text-2xl text-accent font-semibold">
+            Обучайтесь дистанционно<br/>и работайте удаленно
+          </p>
+        </div>
+      </div>
+
+      <div id="telegram-banner-2" className="w-[1080px] h-[1080px] relative flex items-center justify-center mx-auto my-8 overflow-hidden">
+        <img 
+          src="https://cdn.poehali.dev/projects/af4a95b0-dc42-4a22-b1e8-01ee2dab9544/files/9c91f62d-f07e-4d59-8860-ff2101aff2e8.jpg"
+          alt="background"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-primary/85"></div>
+        <div className="relative text-center px-20 z-10">
           <h1 className="text-7xl font-bold text-white leading-tight mb-12">
             Станьте успешным<br/>психотерапевтом<br/>всего за 3 месяца
           </h1>
